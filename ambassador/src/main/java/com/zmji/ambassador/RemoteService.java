@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * @Description: 由单例实现表示的远程遗留应用程序。
+ * 模拟远程的服务的处理逻辑
  * @Author: zhongmou.ji
  * @Date: 2021/9/1 下午6:14
  **/
@@ -34,7 +35,10 @@ public class RemoteService implements RemoteServiceInterface {
 
 
   /**
-   * 远程函数取一个值，然后用随机时间乘以10。意志
+   *
+   * 模拟接口内部的处理逻辑
+   *
+   * 远程函数取一个值，然后用随机时间乘以10
    *
    * 有时返回-1。这模拟了客户端可能必须考虑的连接问题。
    *

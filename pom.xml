@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.zmji</groupId>
-    <artifactId>java-design-pattern</artifactId>
+    <artifactId>java-design-patterns</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
@@ -13,12 +13,53 @@
         <slf4j.version>1.7.30</slf4j.version>
         <logback.version>1.2.3</logback.version>
         <lombok.version>1.18.14</lombok.version>
+        <spring.version>5.0.17.RELEASE</spring.version>
+        <junit-jupiter.version>5.7.1</junit-jupiter.version>
+        <mockito.version>3.5.6</mockito.version>
+        <urm-maven-plugin.version>1.4.8</urm-maven-plugin.version>
+        <maven-checkstyle-plugin.version>3.1.0</maven-checkstyle-plugin.version>
+        <directory-maven-plugin.version>0.3.1</directory-maven-plugin.version>
+        <license-maven-plugin.version>3.0</license-maven-plugin.version>
+        <jacoco.version>0.8.6</jacoco.version>
+        <compiler.version>3.8.1</compiler.version>
+        <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
+        <maven-checkstyle-plugin.version>3.1.0</maven-checkstyle-plugin.version>
+        <spring-boot.version>2.0.9.RELEASE</spring-boot.version>
     </properties>
 
     <modules>
         <module>ambassador</module>
+        <module>api-gateway</module>
     </modules>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-engine</artifactId>
+                <version>${junit-jupiter.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-core</artifactId>
+                <version>${mockito.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
     <dependencies>
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -42,6 +83,18 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>${spring-boot.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 
 
 </project>

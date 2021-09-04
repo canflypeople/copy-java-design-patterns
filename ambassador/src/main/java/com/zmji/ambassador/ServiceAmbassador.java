@@ -6,6 +6,8 @@ import static com.zmji.ambassador.RemoteServiceStatus.FAILURE;
 
 /**
  * @Description:
+ * 调用接口具体的处理类
+ *
  * ServiceAmbassador为（{@link Client}）访问（{@link RemoteService}）提供了一个接口。
  *
  * 该接口以一种安全的方式添加了日志记录、延迟测试和服务的使用，而这种方式不会
@@ -17,7 +19,9 @@ import static com.zmji.ambassador.RemoteServiceStatus.FAILURE;
 @Slf4j
 public class ServiceAmbassador implements RemoteServiceInterface {
 
+  // 重试次数
   private static final int RETRIES = 3;
+  // 线程睡眠时间
   private static final int DELAY_MS = 3000;
 
   ServiceAmbassador() {
@@ -37,6 +41,11 @@ public class ServiceAmbassador implements RemoteServiceInterface {
     return result;
   }
 
+  /**
+   * 安全的调用，如果调用失败就重试n次，
+   * @param value 调用接口的参数
+   * @return 结果
+   */
   private long safeCall(int value) {
     long retries = 0;
     long result = FAILURE.getRemoteServiceStatusValue();
@@ -46,7 +55,7 @@ public class ServiceAmbassador implements RemoteServiceInterface {
         return FAILURE.getRemoteServiceStatusValue();
       }
 
-      if ((result = checkLatency(value)) != FAILURE.getRemoteServiceStatusValue()) {
+      if ((result = checkLatency(value)) == FAILURE.getRemoteServiceStatusValue()) {
         log.info("Failed to reach remote: ({})", i + 1);
         retries++;
         try {
@@ -61,6 +70,5 @@ public class ServiceAmbassador implements RemoteServiceInterface {
     }
     return result;
   }
-
 
 }

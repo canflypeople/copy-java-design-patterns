@@ -1,7 +1,7 @@
 package com.zmji.ambassador;
 
 /**
- * @Description:
+ * @Description: 简单的示例
  * @Author: zhongmou.ji
  * @Date: 2021/9/1 下午6:13
  **/

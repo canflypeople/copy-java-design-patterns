@@ -6,5 +6,6 @@ package com.zmji.ambassador.util;
  * @Date: 2021/9/1 下午6:13
  **/
 public interface RandomProvider {
+  // 返回一个随机的数
   double random();
 }
