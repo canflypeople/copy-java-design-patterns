@@ -30,6 +30,7 @@
     <modules>
         <module>ambassador</module>
         <module>api-gateway</module>
+        <module>arrange-act-assert</module>
     </modules>
 
     <dependencyManagement>
